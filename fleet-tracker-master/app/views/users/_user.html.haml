@@ -1,0 +1,17 @@
+.user{ user.stale? ? {:class => "stale"} : {}, user.abandoned? ? {:class => "abandoned"} : {}}
+  .pilot= link_to user.char_name, user
+  .tag
+    - if user.tag
+      - if @fleet.admin?(@current_user)
+        = link_to(user.tag.text.html_safe + content_tag(:span, "", :class=>"icon"), remove_tag_path(user), :method => :delete, :class=>"tag_link", :title=>"Remove #{user.tag.text} tag from #{user.char_name}")
+      - else
+        = user.tag.text
+    - else
+      &nbsp;
+      - if @fleet.admin?(@current_user)
+        = link_to("Add tag".html_safe + content_tag(:span, "", :class=>"icon"), add_tag_path(user), :title => "Add Tag to #{user.char_name}", :class => "popup add_tag") 
+  .corp= user.corp_name
+  .alliance= user.alliance_name
+  .system
+    = user.solar_system_name
+    = (user.stale? ? link_to("*", "#", :title => "User has not updated their location in over a minute") : "")

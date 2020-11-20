@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Eve Ranch Fleet Tracker</title>
+    <%= render 'layouts/stylesheets' %>
+    <%= javascript_include_tag "jquery.min.js" %>
+    <%= javascript_include_tag "jquery.timeago.js" %>
+    <%= javascript_include_tag "jquery-ui.min.js" %>
+    <%= javascript_include_tag "rails.js" %>
+    <%= javascript_include_tag "application.js" %>
+    <%= javascript_include_tag "autocomplete-rails.js" %>
+    <%= csrf_meta_tag %>
+  </head>
+  <body class="one-col">
+    <div class="container">
+      <%= render 'layouts/header' %>
+      <div id="content">
+        <%- flash.each do |flash_type, message| -%>
+          <%= content_tag :div, message, :class => "flash #{flash_type}" %>
+        <%- end -%>
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,4 @@
+= section("Scouts, Skirmishers, and Squads, oh my!")
+- style= (@fleet.users.tagged.count == 0 ? "display:none;" : "")
+%ul.section.scouts#scouts(style="#{style}")
+  = render 'scouts_inner'
